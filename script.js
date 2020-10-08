@@ -1,8 +1,16 @@
 function displayTime() {
     let now = new Date();
-    let h = now.getHours();
-    let m = now.getMinutes();
-    let s = now.getSeconds();
+    let h, m, s;
+    if (window.location.href.includes('utc=true')) {
+        document.title = 'utctime';
+        h = now.getUTCHours();
+        m = now.getUTCMinutes();
+        s = now.getUTCSeconds();
+    } else {
+        h = now.getHours();
+        m = now.getMinutes();
+        s = now.getSeconds();
+    }
     m = formatNumber(m);
     s = formatNumber(s);
     document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
