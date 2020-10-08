@@ -9,6 +9,17 @@ function displayTime() {
     setTimeout(displayTime, 500);
 }
 
+function displayDate() {
+    let now = new Date();
+    let y = now.getFullYear();
+    let m = now.getMonth();
+    let d = now.getDay();
+    m = formatNumber(m);
+    d = formatNumber(d);
+    document.getElementById('date').innerHTML = y + "-" + m + "-" + d;
+    setTimeout(displayDate, 500);
+}
+
 function formatNumber(i) {
     if (i < 10) {
         i = "0" + i;
@@ -18,4 +29,5 @@ function formatNumber(i) {
 
 window.onload = function () {
     displayTime();
+    displayDate();
 };

@@ -12,6 +12,20 @@ body {
     text-align: center;
 }
 
+.flex-time {
+    height: 60vh;
+    align-items: flex-end;
+}
+
+.flex-date {
+    height: 40vh;
+    align-items: flex-start;
+}
+
 #time {
     font-size: 16vw;
+}
+
+#date {
+    font-size: 10vw;
 }
