@@ -9,6 +9,14 @@ function displayTime() {
     setTimeout(displayTime, 500);
 }
 
+function stopwatchToggle() {
+
+}
+
+function stopwatchReset() {
+
+}
+
 function formatNumber(i) {
     if (i < 10) {
         i = "0" + i;
