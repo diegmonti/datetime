@@ -19,6 +19,7 @@ body {
 
 .flex-date {
     height: 40vh;
+    display: none;
     align-items: flex-start;
 }
 

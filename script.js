@@ -1,8 +1,10 @@
+let utc = false;
+let date = false;
+
 function displayTime() {
     let now = new Date();
     let h, m, s;
-    if (window.location.href.includes('utc=true')) {
-        document.title = 'utctime';
+    if (utc) {
         h = now.getUTCHours();
         m = now.getUTCMinutes();
         s = now.getUTCSeconds();
@@ -19,9 +21,16 @@ function displayTime() {
 
 function displayDate() {
     let now = new Date();
-    let y = now.getFullYear();
-    let m = now.getMonth();
-    let d = now.getDay();
+    let y, m, d;
+    if (utc) {
+        y = now.getUTCFullYear();
+        m = now.getUTCMonth();
+        d = now.getUTCDay();
+    } else {
+        y = now.getFullYear();
+        m = now.getMonth();
+        d = now.getDay();
+    }
     m = formatNumber(m);
     d = formatNumber(d);
     document.getElementById('date').innerHTML = y + "-" + m + "-" + d;
@@ -35,7 +44,30 @@ function formatNumber(i) {
     return i;
 }
 
+function showDate() {
+    document.getElementById('flex-time').classList.add('flex-time');
+    document.getElementById('flex-date').style.display = 'flex';
+}
+
 window.onload = function () {
+    if (window.location.href.includes('utc=true')) {
+        utc = true;
+    }
+    if (window.location.href.includes('date=true')) {
+        date = true;
+    }
+    if (utc && date) {
+        document.title = 'utcdatetime';
+    } else if (utc && !date) {
+        document.title = 'utctime';
+    } else if (!utc && date) {
+        document.title = 'localdatetime';
+    } else {
+        document.title = 'localtime';
+    }
     displayTime();
-    displayDate();
+    if (date) {
+        showDate();
+        displayDate();
+    }
 };
