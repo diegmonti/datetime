@@ -1,5 +1,6 @@
 let utc = false;
 let date = false;
+let stopwatch = false;
 
 function displayTime() {
     let now = new Date();
@@ -13,9 +14,7 @@ function displayTime() {
         m = now.getMinutes();
         s = now.getSeconds();
     }
-    m = formatNumber(m);
-    s = formatNumber(s);
-    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+    printTime(h, m, s);
     setTimeout(displayTime, 500);
 }
 
@@ -37,6 +36,23 @@ function displayDate() {
     setTimeout(displayDate, 500);
 }
 
+function displayStopwatch() {
+    let diff = (new Date() - stopwatch) / 1000;
+    let h, m, s;
+    h = Math.floor((diff / 3600) % 24) ;
+    m = Math.floor((diff / 60) % 60);
+    s = Math.floor(diff % 60);
+    printTime(h, m, s);
+    setTimeout(displayStopwatch, 500);
+}
+
+function printTime(h, m, s) {
+    h = formatNumber(h);
+    m = formatNumber(m);
+    s = formatNumber(s);
+    document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+}
+
 function formatNumber(i) {
     if (i < 10) {
         i = "0" + i;
@@ -50,13 +66,18 @@ function showDate() {
 }
 
 window.onload = function () {
+    if (window.location.href.includes('stopwatch=true')) {
+        stopwatch = new Date();
+    }
     if (window.location.href.includes('utc=true')) {
         utc = true;
     }
     if (window.location.href.includes('date=true')) {
         date = true;
     }
-    if (utc && date) {
+    if (stopwatch) {
+        document.title = 'stopwatch';
+    } else if (utc && date) {
         document.title = 'utcdatetime';
     } else if (utc && !date) {
         document.title = 'utctime';
@@ -65,9 +86,13 @@ window.onload = function () {
     } else {
         document.title = 'localtime';
     }
-    displayTime();
-    if (date) {
-        showDate();
-        displayDate();
+    if (stopwatch) {
+        displayStopwatch();
+    } else {
+        displayTime();
+        if (date) {
+            showDate();
+            displayDate();
+        }
     }
 };
