@@ -23,12 +23,12 @@ function displayDate() {
     let y, m, d;
     if (utc) {
         y = now.getUTCFullYear();
-        m = now.getUTCMonth();
-        d = now.getUTCDay();
+        m = now.getUTCMonth() + 1;
+        d = now.getUTCDate();
     } else {
         y = now.getFullYear();
-        m = now.getMonth();
-        d = now.getDay();
+        m = now.getMonth() + 1;
+        d = now.getDate();
     }
     m = formatNumber(m);
     d = formatNumber(d);
