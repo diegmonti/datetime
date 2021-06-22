@@ -1,8 +1,8 @@
 # DateTime
 
-A (probably useless) full screen digital clock. Try it at: https://datetime.space
+A (probably useless) full screen digital clock. Try it at: https://diegmonti.github.io/datetime/
 
 Features:
-* UTC timezone: https://datetime.space/?utc=true
-* Time with date: https://datetime.space/?date=true
-* Stopwatch: https://datetime.space/?stopwatch=true
+* UTC timezone: https://diegmonti.github.io/datetime/?utc=true
+* Time with date: https://diegmonti.github.io/datetime/?date=true
+* Stopwatch: https://diegmonti.github.io/datetime/?stopwatch=true
